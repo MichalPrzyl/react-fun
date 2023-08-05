@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import { format, subDays } from "date-fns"
+import Wheel from "./Wheel"
+import "./style.css"
 
-function App() {
+export default () => {
+  function formateDate(_relative, absolute) {
+    return format(subDays(new Date(), absolute), "iii d LLL")
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        height: "240px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "#000",
+      }}
+    >
+      <div style={{ width: 180, height: 180 }}>
+        <Wheel
+          loop
+          length={24}
+          width={140}
+          perspective="right"
+          setValue={formateDate}
+        />
+      </div>
+      <div style={{ width: 70, height: 180 }}>
+        {/* <Wheel loop length={24} width={23} /> */}
+      </div>
+      <div style={{ width: 70, height: 180 }}>
+        {/* <Wheel loop length={60} width={23} perspective="left" /> */}
+      </div>
     </div>
-  );
+  )
 }
-
-export default App;
